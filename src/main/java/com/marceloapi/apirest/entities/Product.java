@@ -1,12 +1,19 @@
 package com.marceloapi.apirest.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tb_product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
 
     private Double price;
-
+    @ManyToOne
+    @JoinColumn(name = "department_id")
     private Department department;
 
 

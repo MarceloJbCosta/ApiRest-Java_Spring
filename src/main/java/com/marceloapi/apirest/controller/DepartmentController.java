@@ -2,6 +2,8 @@ package com.marceloapi.apirest.controller;
 
 import com.marceloapi.apirest.entities.Department;
 import com.marceloapi.apirest.entities.Product;
+import com.marceloapi.apirest.repositories.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +15,13 @@ import java.util.List;
 @RequestMapping(value = "/departments")
 public class DepartmentController {
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
     @GetMapping
     public List<Department> getObjects(){
 
-        Department d1 = new Department(1l, "Tech");
-        Department d2 = new Department(2l, "Pet");
 
-
-        List<Department> list = Arrays.asList(d1, d2);
+        List<Department> list = departmentRepository.findAll();
 
         return list;
     }
